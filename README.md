@@ -8,5 +8,7 @@ Esse repositório contém a experimentação feita sobre a comparação de difer
 
 ## Como rodar o experimento?
 
+* mvn clean verify 
+
 ## Relatório do experimento
 Esse [_Relatório_](https://docs.google.com/document/d/1McAgqlTyzA-5fwfJNOPwc6OmLkhDPfAJob9Lm05y2U4/edit?tab=t.0) contém o processo de análise e os resultados.
