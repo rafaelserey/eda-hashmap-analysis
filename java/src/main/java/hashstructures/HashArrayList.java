@@ -1,5 +1,3 @@
-package com.thealgorithms.datastructures.hashmap.hashing;
-
 import java.util.ArrayList;
 
 /**
@@ -23,7 +21,7 @@ import java.util.ArrayList;
  * @param <K> the type of keys maintained by this hash map
  * @param <V> the type of mapped values
  */
-@SuppressWarnings({"rawtypes", "unchecked"})
+@SuppressWarnings({"unchecked"})
 public class HashArrayList<K, V> {
 
     private int size; // Total number of key-value pairs
