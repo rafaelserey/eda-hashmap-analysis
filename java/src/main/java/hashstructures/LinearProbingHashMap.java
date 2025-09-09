@@ -21,11 +21,6 @@ import java.util.ArrayList;
  * </ul>
  * </p>
  *
- * <p>
- * The internal size of the hash table is automatically resized when the load factor exceeds 0.5 or falls below 0.125,
- * ensuring efficient space utilization.
- * </p>
- *
  * @see <a href="https://en.wikipedia.org/wiki/Linear_probing">Linear Probing Hash Table</a>
  *
  * @param <Key> the type of keys maintained by this map
@@ -46,11 +41,12 @@ public class LinearProbingHashMap<Key extends Comparable<Key>, Value> extends Ma
 
     @SuppressWarnings("unchecked")
     // Constructor to initialize the hash table with a specified size
-    public LinearProbingHashMap(int size, float loadFactor) {
-        this.hsize = size;
+    public LinearProbingHashMap(int capacity, float loadFactor) {
+        this.hsize = capacity;
         this.loadFactor = loadFactor;
         keys = (Key[]) new Comparable[size];
         values = (Value[]) new Object[size];
+        this.size = 0;
     }
 
     @Override
@@ -59,7 +55,7 @@ public class LinearProbingHashMap<Key extends Comparable<Key>, Value> extends Ma
             return false;
         }
 
-        if (size / hsize > loadFactor) {
+        if ((float) size / hsize > loadFactor) {
             resize(2 * hsize);
         }
 
@@ -93,40 +89,6 @@ public class LinearProbingHashMap<Key extends Comparable<Key>, Value> extends Ma
     }
 
     @Override
-    public boolean delete(Key key) {
-        if (key == null || !contains(key)) {
-            return false;
-        }
-
-        int i = hash(key, hsize);
-        while (!key.equals(keys[i])) {
-            i = increment(i);
-        }
-
-        keys[i] = null;
-        values[i] = null;
-
-        i = increment(i);
-        while (keys[i] != null) {
-            // Save the key and value for rehashing
-            Key keyToRehash = keys[i];
-            Value valToRehash = values[i];
-            keys[i] = null;
-            values[i] = null;
-            size--;
-            put(keyToRehash, valToRehash);
-            i = increment(i);
-        }
-
-        size--;
-        if (size > 0 && size <= hsize / 8) {
-            resize(hsize / 2);
-        }
-
-        return true;
-    }
-
-    @Override
     public boolean contains(Key key) {
         return get(key) != null;
     }
@@ -154,7 +116,7 @@ public class LinearProbingHashMap<Key extends Comparable<Key>, Value> extends Ma
     }
 
     private void resize(int newSize) {
-        LinearProbingHashMap<Key, Value> tmp = new LinearProbingHashMap<>(newSize);
+        LinearProbingHashMap<Key, Value> tmp = new LinearProbingHashMap<>(newSize, loadFactor);
         for (int i = 0; i < hsize; i++) {
             if (keys[i] != null) {
                 tmp.put(keys[i], values[i]);

@@ -51,7 +51,7 @@ public class QuadraticProbingHashMap<Key extends Comparable<Key>, Value> extends
         int i = 0;
         int keyIndex;
         do {
-            keyIndex = (hash(key, hsize) + i * i) % hsize;
+            keyIndex = (int)(hash(key, hsize) + ((long)i*(i+1))/2) % hsize;
             if (keys[keyIndex] == null) {
                 keys[keyIndex] = key;
                 values[keyIndex] = value;
@@ -77,7 +77,7 @@ public class QuadraticProbingHashMap<Key extends Comparable<Key>, Value> extends
         int i = 0;
         int keyIndex;
         do {
-            keyIndex = (hash(key, hsize) + i * i) % hsize;
+            keyIndex = (int)(hash(key, hsize) + ((long)i*(i+1))/2) % hsize;
             if (keys[keyIndex] != null && key.equals(keys[keyIndex])) {
                 return values[keyIndex]; 
             }
@@ -86,36 +86,6 @@ public class QuadraticProbingHashMap<Key extends Comparable<Key>, Value> extends
 
         return null; 
     }
-
-    @Override
-    public boolean delete(Key key) {
-        if (key == null || !contains(key)) {
-            return false;
-        }
-
-        int i = 0;
-        int keyIndex;
-        do {
-            keyIndex = (hash(key, hsize) + i * i) % hsize;
-            if (key.equals(keys[keyIndex])) {
-                break;
-            }
-            i++;
-        } while (i < hsize);
-
-        keys[keyIndex] = null;
-        values[keyIndex] = null;
-        size--;
-
-        resize(hsize);
-
-        if (size > 0 && size <= hsize / 8) {
-            resize(hsize / 2);
-        }
-
-        return true;
-    }
-
 
     @Override
     public boolean contains(Key key) {

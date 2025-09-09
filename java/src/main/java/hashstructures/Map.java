@@ -4,8 +4,6 @@ public abstract class Map<Key, Value> {
 
     abstract Value get(Key key);
 
-    abstract boolean delete(Key key);
-
     abstract Iterable<Key> keys();
 
     abstract int size();
