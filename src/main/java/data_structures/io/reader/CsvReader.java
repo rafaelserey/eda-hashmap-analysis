@@ -7,22 +7,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CsvReader {
-    public static List<Integer> read(String fileName) {
+	//Método que lê valores inteiros de um CSV
+    public static List<Integer> readValues(String fileName) {
         List<Integer> values = new ArrayList<>();
-        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
-            br.readLine();
-            String line;
-            while ((line = br.readLine()) != null) {
+        
+		// Abre o arquivo e já garante que será fechado automaticamente
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+            String line = reader.readLine();
+			
+			//
+            while ((line = reader.readLine()) != null) {
+                line = line.trim();
+                if (line.isEmpty()) continue;
+                
                 try {
-                    int value = Integer.parseInt(line.trim());
-                    values.add(value);
+                    values.add(Integer.parseInt(line));
                 } catch (NumberFormatException e) {
-                    System.out.println("Ignorando entrada inválida: " + line);
+					// Se a linha não for um número válido, mostra mensagem e ignora
+                    System.out.println("Linha inválida ignorada: " + line);
                 }
             }
         } catch (IOException e) {
-            System.out.println("Erro ao ler o arquivo: " + e.getMessage());
+            System.out.println("Erro ao ler o arquivo '" + fileName + "': " + e.getMessage());
         }
+		//Retorna a lista com os números lidos.
         return values;
+
     }
 }

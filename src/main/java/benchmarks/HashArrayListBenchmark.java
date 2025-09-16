@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import data_structures.hashstructures.HashArrayList;
-import data_structures.io.reader.CsvReader; // <- a sua classe leitora de elementos randomizados
+import data_structures.io.reader.CsvReader;
 								
 @State(Scope.Thread)
 @Fork(value = 5)
