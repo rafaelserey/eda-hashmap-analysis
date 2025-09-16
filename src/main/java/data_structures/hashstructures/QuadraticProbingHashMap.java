@@ -1,3 +1,5 @@
+package data_structures.hashstructures;
+
 import java.util.ArrayList;
 
 /**

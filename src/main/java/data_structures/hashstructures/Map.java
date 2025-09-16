@@ -1,3 +1,5 @@
+package data_structures.hashstructures;
+
 public abstract class Map<Key, Value> {
 
     abstract boolean put(Key key, Value value);
@@ -12,7 +14,7 @@ public abstract class Map<Key, Value> {
         return get(key) != null;
     }
 
-    protected int hash(Key key, int size) {
+    public int hash(Key key, int size) {
         return (key.hashCode() & Integer.MAX_VALUE) % size;
     }
 }

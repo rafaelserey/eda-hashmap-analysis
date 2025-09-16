@@ -1,3 +1,4 @@
+package data_structures.hashstructures;
 import java.util.ArrayList;
 
 /**
@@ -44,8 +45,8 @@ public class LinearProbingHashMap<Key extends Comparable<Key>, Value> extends Ma
     public LinearProbingHashMap(int capacity, float loadFactor) {
         this.hsize = capacity;
         this.loadFactor = loadFactor;
-        keys = (Key[]) new Comparable[size];
-        values = (Value[]) new Object[size];
+        keys = (Key[]) new Comparable[capacity];
+        values = (Value[]) new Object[capacity];
         this.size = 0;
     }
 

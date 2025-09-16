@@ -1,4 +1,6 @@
-import java.util.LinkedList;
+package data_structures.hashstructures;
+
+import java.util.ArrayList;
 
 /**
  * A generic implementation of a hash map using an array of linked lists for collision resolution.
@@ -22,20 +24,20 @@ import java.util.LinkedList;
  * @param <V> the type of mapped values
  */
 @SuppressWarnings({"unchecked"})
-public class HashLinkedList<K, V> {
+public class HashArrayList<K, V> {
 
     private int size; // Total number of key-value pairs
-    private LinkedList<Node>[] buckets; // Array of linked lists (buckets) for storing entries
-	
+    private ArrayList<Node>[] buckets; // Array of linked lists (buckets) for storing entries
     private float loadFactorThreshold;
+	
+
     /**
      * Constructs a new empty hash map with an initial capacity of 16.
      */
-    public HashLinkedList(float loadFactor) {
+    public HashArrayList(float LoadFactor) {
         initBuckets(16);
         size = 0;
-	this.loadFactorThreshold = loadFactor;
-	
+	this.loadFactorThreshold = LoadFactor;
     }
 
     /**
@@ -44,9 +46,9 @@ public class HashLinkedList<K, V> {
      * @param n the number of buckets to initialize
      */
     private void initBuckets(int n) {
-        buckets = new LinkedList[n];
+        buckets = new ArrayList[n];
         for (int i = 0; i < buckets.length; i++) {
-            buckets[i] = new LinkedList<>();
+            buckets[i] = new ArrayList<>();
         }
     }
 
@@ -59,7 +61,7 @@ public class HashLinkedList<K, V> {
      */
     public void put(K key, V value) {
         int bucketIndex = hashFunction(key);
-        LinkedList<Node> nodes = buckets[bucketIndex];
+        ArrayList<Node> nodes = buckets[bucketIndex];
         // Update existing key's value if present
         for (Node node : nodes) {
             if (node.key.equals(key)) {
@@ -93,11 +95,11 @@ public class HashLinkedList<K, V> {
      * Rehashes the map by doubling the number of buckets and re-inserting all entries.
      */
     private void reHash() {
-        LinkedList<Node>[] oldBuckets = buckets;
+        ArrayList<Node>[] oldBuckets = buckets;
         initBuckets(oldBuckets.length * 2);
         this.size = 0;
 
-        for (LinkedList<Node> nodes : oldBuckets) {
+        for (ArrayList<Node> nodes : oldBuckets) {
             for (Node node : nodes) {
                 put(node.key, node.value);
             }
@@ -111,7 +113,7 @@ public class HashLinkedList<K, V> {
      */
     public void remove(K key) {
         int bucketIndex = hashFunction(key);
-        LinkedList<Node> nodes = buckets[bucketIndex];
+        ArrayList<Node> nodes = buckets[bucketIndex];
 
         Node target = null;
         for (Node node : nodes) {
@@ -144,7 +146,7 @@ public class HashLinkedList<K, V> {
      */
     public V get(K key) {
         int bucketIndex = hashFunction(key);
-        LinkedList<Node> nodes = buckets[bucketIndex];
+        ArrayList<Node> nodes = buckets[bucketIndex];
         for (Node node : nodes) {
             if (node.key.equals(key)) {
                 return node.value;
@@ -157,7 +159,7 @@ public class HashLinkedList<K, V> {
     public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append("{");
-        for (LinkedList<Node> nodes : buckets) {
+        for (ArrayList<Node> nodes : buckets) {
             for (Node node : nodes) {
                 builder.append(node.key);
                 builder.append(" : ");

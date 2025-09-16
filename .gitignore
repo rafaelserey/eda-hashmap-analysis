@@ -1,1 +1,19 @@
+
 dependency-reduced-pom.xml
+
+# Pasta de build do Maven
+target/
+
+# Arquivos de resultados gerados pelo benchmark
+resultados.csv
+
+# Dados que podem ser regenerados
+data/
+
+# Arquivos de IDE
+*.iml
+.idea/
+
+# Arquivos de log (gerados por scripts ou Maven)
+*.log
+
