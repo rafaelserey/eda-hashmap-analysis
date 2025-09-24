@@ -8,7 +8,7 @@ import java.util.List;
 
 public class CsvReader {
 	//Método que lê valores inteiros de um CSV
-    public static List<Integer> rea(String fileName) {
+    public static List<Integer> read(String fileName) {
         List<Integer> values = new ArrayList<>();
         
 		// Abre o arquivo e já garante que será fechado automaticamente

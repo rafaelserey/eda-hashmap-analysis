@@ -6,7 +6,7 @@ import org.openjdk.jmh.infra.Blackhole;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import data_structures.hashstructures.HashArrayList;
+import data_structures.hashstructures.HashLinkedList;
 import data_structures.io.reader.CsvReader;
 								
 @State(Scope.Thread)
@@ -17,33 +17,33 @@ import data_structures.io.reader.CsvReader;
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
 
 
-public class HashArrayListBenchmark {
+public class HashLinkedListBenchmark {
 
 	private List<Integer> inputValues;
-	private HashArrayList<Integer, Integer> hashArrayList;
-	private HashArrayList<Integer, Integer> filledHashArrayList;
+	private HashLinkedList<Integer, Integer> hashLinkedList;
+	private HashLinkedList<Integer, Integer> filledLinkedList;
 
    @Setup 
     public void setUp() {
     	inputValues = CsvReader.read("data/unsorted_data_alt.csv");
-		hashArrayList = new HashArrayList<Integer, Integer>(0.75f);
-		filledHashArrayList = new HashArrayList<Integer, Integer>(0.75f);
+		hashLinkedList = new HashLinkedList<Integer, Integer>(0.75f);
+		filledLinkedList = new HashLinkedList<Integer, Integer>(0.75f);
 
 		for(int value: inputValues) 
-			filledHashArrayList.put(value, value);
+			filledLinkedList.put(value, value);
 	}
 
 	@Benchmark
     public void putAll(Blackhole blackhole) {
         for (Integer value : inputValues) {
-            hashArrayList.put(value, value);
+            hashLinkedList.put(value, value);
         }
     }
 
 	@Benchmark
     public void getAll(Blackhole blackhole) {
         for (Integer value : inputValues) {
-            blackhole.consume(filledHashArrayList.get(value));
+            blackhole.consume(filledLinkedList.get(value));
         }
     }
 }
