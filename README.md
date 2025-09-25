@@ -67,7 +67,8 @@ A métrica principal é o Score (ns/op), onde valores menores indicam melhor des
     |QuadraticProbingHashMap|0.9|64.948.320,53|
     |HashArrayListBenchmark|0.5|107.964.315,5|
     |HashLinkedListBenchmark|1.5|136.800.778,8|
-	
+
+	![alt text](/images/allHashs.png)
     #### Interpretação da Recuperação (getAll):
     * A LinearProbingHashMap é a estrutura mais rápida para recuperação, com scores consistentemente em torno de 49 milhões de ns/op.
     * As implementações baseadas em sondagem (LinearProbing e QuadraticProbing) são significativamente mais eficientes do que as baseadas em encadeamento (HashArrayList e HashLinkedList).
