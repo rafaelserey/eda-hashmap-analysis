@@ -19,6 +19,9 @@ import data_structures.io.reader.CsvReader;
 
 public class HashArrayListBenchmark {
 
+	@Param({"0.5","0.75","1.5"})
+	private float loadFactor;
+
 	private List<Integer> inputValues;
 	private HashArrayList<Integer, Integer> hashArrayList;
 	private HashArrayList<Integer, Integer> filledHashArrayList;
@@ -26,8 +29,8 @@ public class HashArrayListBenchmark {
    @Setup 
     public void setUp() {
     	inputValues = CsvReader.read("data/unsorted_data_alt.csv");
-		hashArrayList = new HashArrayList<Integer, Integer>(0.75f);
-		filledHashArrayList = new HashArrayList<Integer, Integer>(0.75f);
+		hashArrayList = new HashArrayList<Integer, Integer>(loadFactor);
+		filledHashArrayList = new HashArrayList<Integer, Integer>(loadFactor);
 
 		for(int value: inputValues) 
 			filledHashArrayList.put(value, value);

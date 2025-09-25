@@ -5,7 +5,8 @@ dependency-reduced-pom.xml
 target/
 
 # Arquivos de resultados gerados pelo benchmark
-resultados.csv
+results.csv
+final_results.csv
 
 # Dados que podem ser regenerados
 data/

@@ -19,6 +19,9 @@ import data_structures.io.reader.CsvReader;
 
 public class LinearProbingHashMapBenchmark {
 
+	@Param({"0.5","0.75","0.9"})
+	private float loadFactor;
+
 	private List<Integer> inputValues;
 	private LinearProbingHashMap<Integer, Integer> linearProbingHash;
 	private LinearProbingHashMap<Integer, Integer> filledLinearProbingHash;
@@ -26,8 +29,8 @@ public class LinearProbingHashMapBenchmark {
    @Setup 
     public void setUp() {
     	inputValues = CsvReader.read("data/unsorted_data_alt.csv");
-		linearProbingHash = new LinearProbingHashMap<Integer, Integer>(0.75f);
-		filledLinearProbingHash = new LinearProbingHashMap<Integer, Integer>(0.75f);
+		linearProbingHash = new LinearProbingHashMap<Integer, Integer>(loadFactor);
+		filledLinearProbingHash = new LinearProbingHashMap<Integer, Integer>(loadFactor);
 
 		for(int value: inputValues) 
 			filledLinearProbingHash.put(value, value);

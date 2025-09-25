@@ -1,3 +1,4 @@
+#!/usr/bin/bash
 
 #flag para interromper no primeiro erro
 set -e
@@ -7,7 +8,7 @@ mvn clean install
 mvn clean package
 
 # rodando benchmark e transferindo para um temp.csv
-java -jar target/benchmarks.jar -rf csv -rff temp.csv
+java -jar target/benchmarks.jar -rf csv -rff temp.csv -prof gc
 
 # aplicando o temp.csv ao results
 if [ -f results.csv ]; then

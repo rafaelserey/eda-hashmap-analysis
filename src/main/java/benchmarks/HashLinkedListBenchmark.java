@@ -19,6 +19,9 @@ import data_structures.io.reader.CsvReader;
 
 public class HashLinkedListBenchmark {
 
+	@Param({"0.5","0.75","1.5"})
+	private float loadFactor;
+
 	private List<Integer> inputValues;
 	private HashLinkedList<Integer, Integer> hashLinkedList;
 	private HashLinkedList<Integer, Integer> filledLinkedList;
@@ -26,8 +29,8 @@ public class HashLinkedListBenchmark {
    @Setup 
     public void setUp() {
     	inputValues = CsvReader.read("data/unsorted_data_alt.csv");
-		hashLinkedList = new HashLinkedList<Integer, Integer>(0.75f);
-		filledLinkedList = new HashLinkedList<Integer, Integer>(0.75f);
+		hashLinkedList = new HashLinkedList<Integer, Integer>(loadFactor);
+		filledLinkedList = new HashLinkedList<Integer, Integer>(loadFactor);
 
 		for(int value: inputValues) 
 			filledLinkedList.put(value, value);

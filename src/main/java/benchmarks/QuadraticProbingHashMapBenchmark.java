@@ -19,6 +19,9 @@ import data_structures.io.reader.CsvReader;
 
 public class QuadraticProbingHashMapBenchmark {
 
+	@Param({"0.5","0.75","0.9"})
+	private float loadFactor;
+
 	private List<Integer> inputValues;
 	private QuadraticProbingHashMap<Integer, Integer> quadraticProbingHash;
 	private QuadraticProbingHashMap<Integer, Integer> filledQuadraticProbingHash;
@@ -26,8 +29,8 @@ public class QuadraticProbingHashMapBenchmark {
    @Setup 
     public void setUp() {
     	inputValues = CsvReader.read("data/unsorted_data_alt.csv");
-		quadraticProbingHash = new QuadraticProbingHashMap<Integer, Integer>(0.75f);
-		filledQuadraticProbingHash = new QuadraticProbingHashMap<Integer, Integer>(0.75f);
+		quadraticProbingHash = new QuadraticProbingHashMap<Integer, Integer>(loadFactor);
+		filledQuadraticProbingHash = new QuadraticProbingHashMap<Integer, Integer>(loadFactor);
 
 		for(int value: inputValues) 
 			filledQuadraticProbingHash.put(value, value);
