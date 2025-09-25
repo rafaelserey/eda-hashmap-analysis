@@ -1,6 +1,6 @@
 import pandas as pd
 
-df = pd.read_csv("results.csv")
+df = pd.read_csv("probing_results.csv")
 
 # Extrai benchmark base e métrica
 df["BenchmarkBase"] = df["Benchmark"].str.split(":").str[0]
@@ -18,5 +18,5 @@ tabela = df.pivot_table(
 ).reset_index()
 
 
-tabela.to_csv("final_results.csv")
+tabela.to_csv("final_probing_results.csv")
 

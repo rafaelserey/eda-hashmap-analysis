@@ -8,7 +8,7 @@ mvn clean install
 mvn clean package
 
 # rodando benchmark e transferindo para um temp.csv
-java -jar target/benchmarks.jar -rf csv -rff temp.csv -prof gc
+java -jar target/benchmarks.jar -rf csv -rff temp.csv 
 
 # aplicando o temp.csv ao results
 if [ -f results.csv ]; then
