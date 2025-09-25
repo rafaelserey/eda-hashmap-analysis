@@ -50,10 +50,13 @@ O objetivo desta análise é comparar a eficiência de quatro estruturas de dado
 1. **Métricas Chave e Dados Brutos**
 >As estruturas de dados comparadas são: HashArrayList, HashLinkedList, LinearProbingHashMap, e QuadraticProbingHashMap
 .
-A métrica principal é o Score (ns/op), onde valores menores indicam melhor desempenho
-. O loadFactor variou entre 0.5, 0.75, 0.9 e 1.5, dependendo do teste
-.
+A métrica principal é o Score (ns/op), onde valores menores indicam melhor desempenho. 
+O loadFactor variou entre 0.5, 0.75, 0.9 e 1.5, dependendo do teste.
+
+![Gráfico com todos os Hashs, fatores de carga e métodos](/images/allHashs.png)
 2. **Análise de Desempenho por Operação**
+    ![Linear and Quadratic Probing](linearProb_quadraticProb.png)
+    ![ArrayList and LinkedList Hash](arrayList_linkedList.png)
     1. Desempenho de Recuperação 
 
     > Esta seção avalia a rapidez com que a estrutura recupera todos os dados armazenados.
@@ -68,7 +71,6 @@ A métrica principal é o Score (ns/op), onde valores menores indicam melhor des
     |HashArrayListBenchmark|0.5|107.964.315,5|
     |HashLinkedListBenchmark|1.5|136.800.778,8|
 
-	![alt text](/images/allHashs.png)
     #### Interpretação da Recuperação (getAll):
     * A LinearProbingHashMap é a estrutura mais rápida para recuperação, com scores consistentemente em torno de 49 milhões de ns/op.
     * As implementações baseadas em sondagem (LinearProbing e QuadraticProbing) são significativamente mais eficientes do que as baseadas em encadeamento (HashArrayList e HashLinkedList).
@@ -96,7 +98,7 @@ A métrica principal é o Score (ns/op), onde valores menores indicam melhor des
 
     3. Impacto do Fator de Carga 
     > O impacto do loadFactor no desempenho varia conforme a implementação:
-    Estruturas de Sondagem (Probing): Para LinearProbingHashMap e QuadraticProbingHashMap, a variação do loadFactor (de 0.5 a 0.9) resultou em diferenças mínimas nos scores. O desempenho dessas estruturas é muito estável em diferentes níveis de ocupação.
+    * Estruturas de Sondagem (Probing): Para LinearProbingHashMap e QuadraticProbingHashMap, a variação do loadFactor (de 0.5 a 0.9) resultou em diferenças mínimas nos scores. O desempenho dessas estruturas é muito estável em diferentes níveis de ocupação.
 
     * Estruturas de Encandeamento (Hash): O desempenho é mais volátil.
         * No HashArrayList.getAll, o score aumentou de 107.964.315,5 ns/op (0.5) para 132.992.409,1 ns/op (1.5), indicando que o aumento do fator de carga penaliza a recuperação de dados quando listas encadeadas estão envolvidas.
