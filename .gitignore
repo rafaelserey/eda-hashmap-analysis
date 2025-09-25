@@ -18,3 +18,4 @@ data/
 # Arquivos de log (gerados por scripts ou Maven)
 *.log
 
+temp.csv
