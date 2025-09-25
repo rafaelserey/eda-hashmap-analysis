@@ -7,8 +7,8 @@ target/
 # Arquivos de resultados gerados pelo benchmark
 results.csv
 final_results.csv
-run-probing-benchmark
-
+run-probing-benchmark.sh
+probing_results.csv
 # Dados que podem ser regenerados
 data/
 
