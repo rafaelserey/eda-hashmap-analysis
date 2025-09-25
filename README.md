@@ -41,10 +41,9 @@ Esse experimento será conduzido em cinco etapas principais, correspondentes ao 
 
 	Após a execução, os dados serão processados para permitir a comparação entre os cenários. Os dados obtidos durante a execução dos benchmarks serão registrados em arquivos de resultados. Em seguida, serão gerados gráficos comparativos que representarão o desempenho de cada variação de HashMap em relação às métricas coletadas. Por fim, os resultados serão analisados de forma crítica, buscando identificar padrões de comportamento e compreender em quais cenários cada técnica apresenta maior eficiência.
 
-## Resultados
+## Resultados do Estudo de Desempenho (Benchmarks)
 
 --------------------------------------------------------------------------------
-## Resultados do Estudo de Desempenho (Benchmarks)
 O objetivo desta análise é comparar a eficiência de quatro estruturas de dados em operações chave: recuperação de dados (getAll) e inserção de dados (putAll), sob diversas configurações de loadFactor
 . Os resultados são medidos em tempo de execução (ns/op)
 .
@@ -55,7 +54,7 @@ A métrica principal é o Score (ns/op), onde valores menores indicam melhor des
 . O loadFactor variou entre 0.5, 0.75, 0.9 e 1.5, dependendo do teste
 .
 2. **Análise de Desempenho por Operação**
-    1. Desempenho de Recuperação ()
+    1. Desempenho de Recuperação 
 
     > Esta seção avalia a rapidez com que a estrutura recupera todos os dados armazenados.
 
@@ -75,7 +74,7 @@ A métrica principal é o Score (ns/op), onde valores menores indicam melhor des
     * O pior desempenho foi observado na HashLinkedListBenchmark, atingindo 136.800.778,8 ns/op com loadFactor de 1.5.
     <br>
     
-    2. Desempenho de Inserção ()
+    2. Desempenho de Inserção 
     
     >Esta seção avalia o custo de tempo para inserir todos os dados na estrutura.
     
@@ -94,7 +93,7 @@ A métrica principal é o Score (ns/op), onde valores menores indicam melhor des
     * As implementações HashArrayList e HashLinkedList registraram os piores resultados. A HashLinkedList alcançou 167.618.200,4 ns/op (loadFactor 0.75), o custo de inserção mais alto em todos os testes.
     <br>
 
-    3. Impacto do Fator de Carga ()
+    3. Impacto do Fator de Carga 
     > O impacto do loadFactor no desempenho varia conforme a implementação:
     Estruturas de Sondagem (Probing): Para LinearProbingHashMap e QuadraticProbingHashMap, a variação do loadFactor (de 0.5 a 0.9) resultou em diferenças mínimas nos scores. O desempenho dessas estruturas é muito estável em diferentes níveis de ocupação.
 
