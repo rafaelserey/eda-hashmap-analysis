@@ -133,8 +133,8 @@ Para investigar essa discrepância, conduzimos um mini-experimento adicional. Ne
 Os resultados mostraram que, nesse cenário, a sondagem quadrática realmente diluiu melhor as colisões, apresentando tempos médios de inserção e acesso menores do que a linear. O gráfico a seguir demonstra os resultados do experimento. 
 
 
+Entretanto, mesmo nesse contexto extremo, o fator de carga continuou a ter impacto mínimo nos tempos observados, confirmando que a ausência de efeito do fator de carga nos experimentos originais constitui a principal ameaça à validade do estudo.
 
-Entretanto, mesmo nesse contexto extremo, o fator de carga continuou a ter 
 
 ## Considerações finais
     
