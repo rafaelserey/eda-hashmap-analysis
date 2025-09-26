@@ -82,9 +82,10 @@ O loadFactor variou entre 0.5, 0.75, 0.9 e 1.5, dependendo do teste.
 		|HashLinkedListBenchmark|1.5|136.800.778,8|
 
 		#### Interpretação da Recuperação (getAll):
-		* A LinearProbingHashMap é a estrutura mais rápida para recuperação, com scores consistentemente em torno de 49 milhões de ns/op.
-		* As implementações baseadas em sondagem (LinearProbing e QuadraticProbing) são significativamente mais eficientes do que as baseadas em 	encadeamento (HashArrayList e HashLinkedList).
-		* O pior desempenho foi observado na HashLinkedListBenchmark, atingindo 136.800.778,8 ns/op com loadFactor de 1.5.
+		O desempenho superior da LinearProbingHashMap na recuperação (≈49M ns/op) pode ser explicado pela localidade espacial da memória. A sondagem linear tende a explorar posições adjacentes no array, reduzindo falhas de cache e aproveitando melhor a hierarquia de memória. Esse padrão garante acesso mais previsível e eficiente, o que a coloca consistentemente como a opção mais rápida.
+Já a QuadraticProbingHashMap, embora também baseada em endereçamento aberto, apresenta crescimento quadrático nos deslocamentos, o que aumenta a dispersão dos acessos e reduz parcialmente os ganhos de localidade. Isso explica seu desempenho inferior (≈64M ns/op), ainda que melhor que as estratégias de encadeamento.
+Por outro lado, as implementações HashArrayList e HashLinkedList sofrem com a natureza das listas encadeadas: maior overhead de ponteiros, acessos não contíguos e falhas frequentes de cache. Esses fatores penalizam a velocidade de recuperação, sendo a HashLinkedList a mais prejudicada (≈136M ns/op). Esse resultado reforça que, em cenários orientados à leitura massiva, estruturas com sondagem aberta oferecem vantagens significativas sobre as encadeadas.
+
 	2. Desempenho de Inserção    
 		> Esta seção avalia o custo de tempo para inserir todos os dados na estrutura.
     
