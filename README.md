@@ -51,7 +51,6 @@ Esse experimento será conduzido em cinco etapas principais, correspondentes ao 
 
 ## Resultados do Estudo de Desempenho (Benchmarks)
 
---------------------------------------------------------------------------------
 O objetivo desta análise é comparar a eficiência de quatro estruturas de dados em operações chave: recuperação de dados (getAll) e inserção de dados (putAll), sob diversas configurações de loadFactor. Os resultados são medidos em tempo de execução (ns/op).
 <br>
 ![Gráfico com todos os Hashs, fatores de carga e métodos](/images/allHashs.png)
@@ -60,7 +59,7 @@ O objetivo desta análise é comparar a eficiência de quatro estruturas de dado
 >As estruturas de dados comparadas são: HashArrayList, HashLinkedList, LinearProbingHashMap, e QuadraticProbingHashMap.
 A métrica principal é o Score (ns/op), onde valores menores indicam melhor desempenho. 
 O loadFactor variou entre 0.5, 0.75, 0.9 e 1.5, dependendo do teste.
-<br>
+<br> <br> <br>
 
 
 <table>
