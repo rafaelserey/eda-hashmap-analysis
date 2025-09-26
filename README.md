@@ -102,17 +102,16 @@ Por outro lado, as implementações HashArrayList e HashLinkedList sofrem com a 
 		|HashLinkedListBenchmark|0.75|167.618.200,4|
 			
 		#### Interpretação da Inserção (putAll):
-		* A LinearProbingHashMap mantém a liderança, com o melhor desempenho de inserção registrado em 72.506.491,74 ns/op (loadFactor 0.75).
-		* A QuadraticProbingHashMap é a segunda melhor opção, com scores na faixa de 81 milhões de ns/op.
-		* As implementações HashArrayList e HashLinkedList registraram os piores resultados. A HashLinkedList alcançou 167.618.200,4 ns/op (loadFactor 0.75), o custo de inserção mais alto em todos os testes.
+		A LinearProbingHashMap novamente se destacou, registrando o melhor custo de inserção (≈72M ns/op com loadFactor 0.75). Esse desempenho decorre da sua simplicidade no tratamento de colisões: a busca sequencial pelo próximo slot vazio tende a ser curta em fatores de carga controlados, favorecendo a eficiência. Além disso, a baixa complexidade operacional reduz overhead no processo de inserção.
+A QuadraticProbingHashMap, embora próxima em desempenho (≈81M ns/op), apresenta inserções um pouco mais custosas devido ao crescimento quadrático da sequência de sondagem. Embora essa estratégia reduza clusters primários, ela introduz maior dispersão e, portanto, pode exigir mais saltos até encontrar uma posição livre.
+As estruturas baseadas em encadeamento (HashArrayList e HashLinkedList) foram as menos eficientes. O custo de criar e gerenciar objetos adicionais (nós e listas) e o overhead de ponteiros tornam o processo de inserção significativamente mais lento (≈160M ns/op). Esses resultados indicam que, em cenários de inserção intensiva, o encadeamento fechado é penalizado por sua complexidade estrutural, enquanto o endereçamento aberto mantém melhor escalabilidade.
 
 	3. Impacto do Fator de Carga 
-		> O impacto do loadFactor no desempenho varia conforme a implementação:
-		* Estruturas de Sondagem (Probing): Para LinearProbingHashMap e QuadraticProbingHashMap, a variação do loadFactor (de 0.5 a 0.9) resultou em diferenças mínimas nos scores. O desempenho dessas estruturas é muito estável em diferentes níveis de ocupação.
-
-		* Estruturas de Encandeamento (Hash): O desempenho é mais volátil.
-			* No HashArrayList.getAll, o score aumentou de 107.964.315,5 ns/op (0.5) para 132.992.409,1 ns/op (1.5), indicando que o aumento do fator de carga penaliza a recuperação de dados quando listas encadeadas estão envolvidas.
-   		 	* O HashLinkedList.putAll também mostrou uma degradação clara, indo de 133.382.830,1 ns/op (0.5) para 167.618.200,4 ns/op (0.75).
+		> O impacto do Fator de Carga no desempenho varia conforme a implementação:
+	
+		O efeito do Fator de Carga mostrou-se altamente dependente da técnica de tratamento de colisões. Nas estratégias de sondagem aberta (linear e quadrática), o desempenho permaneceu estável mesmo com variações entre 0.5 e 0.9. Isso sugere que a densidade de ocupação da tabela não compromete substancialmente a eficiência até valores relativamente altos, reforçando a robustez dessas implementações em cenários de maior utilização da memória.
+Já nas estratégias de encadeamento fechado, o impacto do fator de carga foi mais sensível. O aumento da densidade elevou significativamente os tempos de operação, como observado na recuperação do HashArrayList, que cresceu de ≈108M ns/op (loadFactor 0.5) para ≈133M ns/op (loadFactor 1.5). Esse comportamento decorre do crescimento médio das listas encadeadas, que aumenta linearmente o custo de busca e degrada a eficiência.
+Esses resultados sugerem que, em ambientes com maior pressão de carga, o endereçamento aberto oferece maior previsibilidade e resiliência, enquanto o encadeamento fechado degrada rapidamente, tornando-se adequado apenas para cenários com baixa ocupação ou em que a inserção de chaves distribuídas seja garantida.
 
 3. **Análise de Alocação de Memória (GC Metrics)**
     * As métricas de Garbage Collection (GC) indicam que a alocação de memória não foi um gargalo no desempenho medido:
