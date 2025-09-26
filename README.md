@@ -119,6 +119,23 @@ Esses resultados sugerem que, em ambientes com maior pressão de carga, o endere
         * O gc.alloc.rate.norm (B/op), que mede a taxa normalizada de alocação de memória, permaneceu extremamente baixo e estável, variando apenas minimamente em torno de 0.0011 B/op em todos os testes.
 <br>
 
+## Ameaças à validade
+Uma ameaça relevante à validade deste estudo está no comportamento observado entre os métodos de endereçamento aberto com sondagem linear e quadrática. Segundo a teoria, esperava-se que o método linear apresentasse pior desempenho à medida que o fator de carga aumentasse, enquanto o quadrático deveria amenizar os efeitos de colisões. No entanto, os resultados iniciais mostraram desempenhos muito próximos entre os dois métodos, com pouca influência do fator de carga.
+
+### Experimento de Validação
+
+Para investigar essa discrepância, conduzimos um mini-experimento adicional. Neste experimento, alteramos a função de hash para hashCode % 5, criando um cenário com alta taxa de colisões. O objetivo foi observar como cada método se comporta sob condições de estresse, forçando situações em que a sondagem quadrática deveria se destacar. As variáveis do experimento foram levemente modificadas em relação ao experimento original. Para evitar clustering em demasiado, foram alteradas 
+* A entrada analisada agora contém 40.000 valores aleatórios que podem ser repetidos;
+* Os parâmetros do benchmark foram todos alterados para 1, afim de acelerar o processo;
+
+
+### Resultados da experimentação
+Os resultados mostraram que, nesse cenário, a sondagem quadrática realmente diluiu melhor as colisões, apresentando tempos médios de inserção e acesso menores do que a linear. O gráfico a seguir demonstra os resultados do experimento. 
+
+
+
+Entretanto, mesmo nesse contexto extremo, o fator de carga continuou a ter 
+
 ## Considerações finais
     
 ## Relatório do experimento
