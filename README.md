@@ -54,8 +54,13 @@ A métrica principal é o Score (ns/op), onde valores menores indicam melhor des
 O loadFactor variou entre 0.5, 0.75, 0.9 e 1.5, dependendo do teste.
 <br>
 
-![Linear and Quadratic Probing](images/linearProb_quadraticProb.png)
-![ArrayList and LinkedList Hash](images/arrayList_linkedList.png)
+
+<table>
+      <tr>
+        <td><img src="images/linearProb_quadraticProb.png" alt="Descrição da imagem 1" width="100%"></td>
+        <td><img src="images/arrayList_linkedList.png" alt="Descrição da imagem 2" width="100%"></td>
+      </tr>
+    </table>
 
 2. **Análise de Desempenho por Operação**
     1. Desempenho de Recuperação 
