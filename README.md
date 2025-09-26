@@ -44,65 +44,61 @@ Esse experimento será conduzido em cinco etapas principais, correspondentes ao 
 ## Resultados do Estudo de Desempenho (Benchmarks)
 
 --------------------------------------------------------------------------------
-O objetivo desta análise é comparar a eficiência de quatro estruturas de dados em operações chave: recuperação de dados (getAll) e inserção de dados (putAll), sob diversas configurações de loadFactor
-. Os resultados são medidos em tempo de execução (ns/op)
-.
+O objetivo desta análise é comparar a eficiência de quatro estruturas de dados em operações chave: recuperação de dados (getAll) e inserção de dados (putAll), sob diversas configurações de loadFactor. Os resultados são medidos em tempo de execução (ns/op).
+<br>
+![Gráfico com todos os Hashs, fatores de carga e métodos](/images/allHashs.png)
 1. **Métricas Chave e Dados Brutos**
->As estruturas de dados comparadas são: HashArrayList, HashLinkedList, LinearProbingHashMap, e QuadraticProbingHashMap
-.
+
+>As estruturas de dados comparadas são: HashArrayList, HashLinkedList, LinearProbingHashMap, e QuadraticProbingHashMap.
 A métrica principal é o Score (ns/op), onde valores menores indicam melhor desempenho. 
 O loadFactor variou entre 0.5, 0.75, 0.9 e 1.5, dependendo do teste.
+<br>
 
-![Gráfico com todos os Hashs, fatores de carga e métodos](/images/allHashs.png)
+![Linear and Quadratic Probing](images/linearProb_quadraticProb.png)
+![ArrayList and LinkedList Hash](images/arrayList_linkedList.png)
+
 2. **Análise de Desempenho por Operação**
-    ![Linear and Quadratic Probing](linearProb_quadraticProb.png)
-    ![ArrayList and LinkedList Hash](arrayList_linkedList.png)
     1. Desempenho de Recuperação 
+    	> Esta seção avalia a rapidez com que a estrutura recupera todos os dados armazenados.
 
-    > Esta seção avalia a rapidez com que a estrutura recupera todos os dados armazenados.
+		|Estrutura|loadFactor|Score (ns/op)|
+		|-----|------|-------|
+		|LinearProbingHashMap|0.5|49.423.310,89|
+		|LinearProbingHashMap|0.75|49.863.936,24|
+		|LinearProbingHashMap|0.9|49.617.860,91|
+		|QuadraticProbingHashMap|0.5|63.907.939,62|
+		|QuadraticProbingHashMap|0.9|64.948.320,53|
+		|HashArrayListBenchmark|0.5|107.964.315,5|
+		|HashLinkedListBenchmark|1.5|136.800.778,8|
 
-    |Estrutura|loadFactor|Score (ns/op)|
-    |-----|------|-------|
-    |LinearProbingHashMap|0.5|49.423.310,89|
-    |LinearProbingHashMap|0.75|49.863.936,24|
-    |LinearProbingHashMap|0.9|49.617.860,91|
-    |QuadraticProbingHashMap|0.5|63.907.939,62|
-    |QuadraticProbingHashMap|0.9|64.948.320,53|
-    |HashArrayListBenchmark|0.5|107.964.315,5|
-    |HashLinkedListBenchmark|1.5|136.800.778,8|
-
-    #### Interpretação da Recuperação (getAll):
-    * A LinearProbingHashMap é a estrutura mais rápida para recuperação, com scores consistentemente em torno de 49 milhões de ns/op.
-    * As implementações baseadas em sondagem (LinearProbing e QuadraticProbing) são significativamente mais eficientes do que as baseadas em encadeamento (HashArrayList e HashLinkedList).
-    * O pior desempenho foi observado na HashLinkedListBenchmark, atingindo 136.800.778,8 ns/op com loadFactor de 1.5.
-    <br>
+		#### Interpretação da Recuperação (getAll):
+		* A LinearProbingHashMap é a estrutura mais rápida para recuperação, com scores consistentemente em torno de 49 milhões de ns/op.
+		* As implementações baseadas em sondagem (LinearProbing e QuadraticProbing) são significativamente mais eficientes do que as baseadas em 	encadeamento (HashArrayList e HashLinkedList).
+		* O pior desempenho foi observado na HashLinkedListBenchmark, atingindo 136.800.778,8 ns/op com loadFactor de 1.5.
+	2. Desempenho de Inserção    
+		> Esta seção avalia o custo de tempo para inserir todos os dados na estrutura.
     
-    2. Desempenho de Inserção 
-    
-    >Esta seção avalia o custo de tempo para inserir todos os dados na estrutura.
-    
-    |Estrutura|loadFactor|Score (ns/op)|
-    |-----|-----|-----|
-    |LinearProbingHashMap|0.75|72.506.491,74|
-    |LinearProbingHashMap|0.9|73.516.415,75|
-    |QuadraticProbingHashMap|0.9|81.498.851,21|	
-    |QuadraticProbingHashMap|0.75|81.949.619,83|	
-    |HashArrayListBenchmark|0.75|162.519.794,9|	
-    |HashLinkedListBenchmark|0.75|167.618.200,4|
-	
-    #### Interpretação da Inserção (putAll):
-    * A LinearProbingHashMap mantém a liderança, com o melhor desempenho de inserção registrado em 72.506.491,74 ns/op (loadFactor 0.75).
-    * A QuadraticProbingHashMap é a segunda melhor opção, com scores na faixa de 81 milhões de ns/op.
-    * As implementações HashArrayList e HashLinkedList registraram os piores resultados. A HashLinkedList alcançou 167.618.200,4 ns/op (loadFactor 0.75), o custo de inserção mais alto em todos os testes.
-    <br>
+		|Estrutura|loadFactor|Score (ns/op)|
+		|-----|-----|-----|
+		|LinearProbingHashMap|0.75|72.506.491,74|
+		|LinearProbingHashMap|0.9|73.516.415,75|
+		|QuadraticProbingHashMap|0.9|81.498.851,21|	
+		|QuadraticProbingHashMap|0.75|81.949.619,83|	
+		|HashArrayListBenchmark|0.75|162.519.794,9|	
+		|HashLinkedListBenchmark|0.75|167.618.200,4|
+			
+		#### Interpretação da Inserção (putAll):
+		* A LinearProbingHashMap mantém a liderança, com o melhor desempenho de inserção registrado em 72.506.491,74 ns/op (loadFactor 0.75).
+		* A QuadraticProbingHashMap é a segunda melhor opção, com scores na faixa de 81 milhões de ns/op.
+		* As implementações HashArrayList e HashLinkedList registraram os piores resultados. A HashLinkedList alcançou 167.618.200,4 ns/op (loadFactor 0.75), o custo de inserção mais alto em todos os testes.
 
-    3. Impacto do Fator de Carga 
-    > O impacto do loadFactor no desempenho varia conforme a implementação:
-    * Estruturas de Sondagem (Probing): Para LinearProbingHashMap e QuadraticProbingHashMap, a variação do loadFactor (de 0.5 a 0.9) resultou em diferenças mínimas nos scores. O desempenho dessas estruturas é muito estável em diferentes níveis de ocupação.
+	3. Impacto do Fator de Carga 
+		> O impacto do loadFactor no desempenho varia conforme a implementação:
+		* Estruturas de Sondagem (Probing): Para LinearProbingHashMap e QuadraticProbingHashMap, a variação do loadFactor (de 0.5 a 0.9) resultou em diferenças mínimas nos scores. O desempenho dessas estruturas é muito estável em diferentes níveis de ocupação.
 
-    * Estruturas de Encandeamento (Hash): O desempenho é mais volátil.
-        * No HashArrayList.getAll, o score aumentou de 107.964.315,5 ns/op (0.5) para 132.992.409,1 ns/op (1.5), indicando que o aumento do fator de carga penaliza a recuperação de dados quando listas encadeadas estão envolvidas.
-        * O HashLinkedList.putAll também mostrou uma degradação clara, indo de 133.382.830,1 ns/op (0.5) para 167.618.200,4 ns/op (0.75).
+		* Estruturas de Encandeamento (Hash): O desempenho é mais volátil.
+			* No HashArrayList.getAll, o score aumentou de 107.964.315,5 ns/op (0.5) para 132.992.409,1 ns/op (1.5), indicando que o aumento do fator de carga penaliza a recuperação de dados quando listas encadeadas estão envolvidas.
+   		 	* O HashLinkedList.putAll também mostrou uma degradação clara, indo de 133.382.830,1 ns/op (0.5) para 167.618.200,4 ns/op (0.75).
 
 3. **Análise de Alocação de Memória (GC Metrics)**
     * As métricas de Garbage Collection (GC) indicam que a alocação de memória não foi um gargalo no desempenho medido:
