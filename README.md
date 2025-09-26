@@ -109,11 +109,9 @@ O loadFactor variou entre 0.5, 0.75, 0.9 e 1.5, dependendo do teste.
     * As métricas de Garbage Collection (GC) indicam que a alocação de memória não foi um gargalo no desempenho medido:
         * O gc.count foi consistentemente 0.0 em todas as 23 medições de benchmark. Isso significa que não houve ciclos de coleta de lixo durante as operações cronometradas.
         * O gc.alloc.rate.norm (B/op), que mede a taxa normalizada de alocação de memória, permaneceu extremamente baixo e estável, variando apenas minimamente em torno de 0.0011 B/op em todos os testes.
-4. **Conclusões e Recomendações**
-    1. Melhor Escolha de Desempenho: A LinearProbingHashMap oferece o melhor desempenho geral, tanto para recuperação (getAll) quanto para inserção (putAll).
-    2. Eficiência de Tempo: A ordem de eficiência decrescente é: LinearProbingHashMap > QuadraticProbingHashMap > HashArrayList/HashLinkedList.
-    3. Robustez: As implementações baseadas em Sonda são mais robustas contra variações no loadFactor (até 0.9).
-    4. Custo Operacional: As estruturas HashArrayList e HashLinkedList têm um custo operacional significativamente maior, especialmente com fatores de carga mais altos, o que sugere um overhead maior no gerenciamento de colisões via encadeamento.
+<br>
 
+## Considerações finais
+    
 ## Relatório do experimento
 Esse [_Relatório_](https://docs.google.com/document/d/1McAgqlTyzA-5fwfJNOPwc6OmLkhDPfAJob9Lm05y2U4/edit?tab=t.0) contém o processo de análise e os resultados.
