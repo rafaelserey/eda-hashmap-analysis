@@ -116,8 +116,10 @@ Esses resultados sugerem que, em ambientes com maior pressão de carga, o endere
 3. **Análise de Alocação de Memória (GC Metrics)**
     * As métricas de Garbage Collection (GC) indicam que a alocação de memória não foi um gargalo no desempenho medido:
         * O gc.count foi consistentemente 0.0 em todas as 23 medições de benchmark. Isso significa que não houve ciclos de coleta de lixo durante as operações cronometradas.
-        * O gc.alloc.rate.norm (B/op), que mede a taxa normalizada de alocação de memória, permaneceu extremamente baixo e estável, variando apenas minimamente em torno de 0.0011 B/op em todos os testes.
+        * O gc.alloc.rate.norm (B/op), que mede a taxa normalizada de alocação de memória, permaneceu extremamente baixo e estável, variando apenas minimamente em todos os testes.
 <br>
+
+![Gráfico de Garbage Collector](/images/grafico2.jpg)
 
 ## Ameaças à validade
 Uma ameaça relevante à validade deste estudo está no comportamento observado entre os métodos de endereçamento aberto com sondagem linear e quadrática. Segundo a teoria, esperava-se que o método linear apresentasse pior desempenho à medida que o fator de carga aumentasse, enquanto o quadrático deveria amenizar os efeitos de colisões. No entanto, os resultados iniciais mostraram desempenhos muito próximos entre os dois métodos, com pouca influência do fator de carga.
