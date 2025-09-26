@@ -8,7 +8,7 @@ Esse repositório contém a experimentação feita sobre a comparação de difer
 
 ## Introdução
 
-Os HashMaps têm seu uso consolidado na prática computacional por se configurarem como ferramentas para a organização e manutenção de dados primordiais de um sistema. A busca por uma estrutura de dados eficiente permite a construção de sistemas mais rápidos, facilita a manipulação de informações sem perdas e maximiza o aproveitamento dos recursos. Esse tema torna-se imprescindível à medida que o crescimento no volume de dados exige soluções cada vez mais eficazes. Neste estudo, implementamos diversos HashMaps sob diferentes fatores de carga e avaliamos a eficiência de seus métodos, com o objetivo de identificar qual HashMap apresenta melhor desempenho na inserção e na busca de uma quantidade randômica de itens.
+Os HashMaps têm seu uso consolidado na prática computacional por se configurarem como ferramentas essenciais para a organização e manutenção de dados em um sistema. A busca por estruturas de dados eficientes permite sistemas mais rápidos, facilita a manipulação de informações sem perdas e maximiza o aproveitamento dos recursos. Esse tema torna-se relevante diante do crescimento constante no volume de dados, que exige soluções eficazes e escaláveis. Neste estudo, implementamos diferentes HashMaps, sob distintos fatores de carga, para avaliar a eficiência de seus métodos e identificar qual apresenta melhor desempenho na inserção e busca de itens.
 
 
 ## Como rodar o experimento?
