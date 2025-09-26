@@ -3,6 +3,8 @@
 #flag para interromper no primeiro erro
 set -e
 
+python3 python/src/sample_generator_script.py
+
 # build do mvn
 mvn clean install
 mvn clean package
