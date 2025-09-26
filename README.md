@@ -12,7 +12,7 @@ Os HashMaps têm seu uso consolidado na prática computacional por se configurar
 
 ## Objetivo
 
-O objetivo deste projeto é analisar e comparar diferentes implementações de HashMaps, avaliando a eficiência de suas operações de inserção e busca sob distintos fatores de carga. Busca-se identificar qual abordagem apresenta melhor desempenho na manipulação de uma quantidade randômica de dados, além disso, o estudo pretende fornecer informações sobre as vantagens e limitações de cada técnica, auxiliando na escolha da estrutura de dados mais adequada para aplicações que demandam alta performance e escalabilidade.
+O objetivo deste projeto é analisar e comparar diferentes implementações de HashMaps, avaliando a eficiência de suas operações de inserção e busca sob distintos fatores de carga. O estudo busca identificar qual abordagem apresenta melhor desempenho na manipulação de uma quantidade randômica de dados, considerando diferentes cenários de colisão e níveis de ocupação das tabelas. Por fim, o objetivo é gerar uma base de análise que auxilie desenvolvedores e pesquisadores na escolha da implementação de HashMap mais adequada para aplicações que demandam alta performance, confiabilidade na recuperação de dados e consistência operacional, contribuindo para a otimização de sistemas que lidam com grandes volumes de informação.
 
 ## Como rodar o experimento?
 ```
