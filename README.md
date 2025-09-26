@@ -141,6 +141,6 @@ Entretanto, mesmo nesse contexto extremo, o fator de carga continuou a ter impac
 ## Considerações finais
 
 ## Referências
-Foi utilizado o [repositório](https://github.com/TheAlgorithms/Java/tree/master/src/main/java/com/thealgorithms/datastructures/hashmap) do TheAlgorithms para usar as implementações de base dos HashMaps como base para nossas próprias implementações.
+Foi utilizado o [repositório](https://github.com/TheAlgorithms/Java/tree/master/src/main/java/com/thealgorithms/datastructures/hashmap) do TheAlgorithms para usar as implementações dos HashMaps como base para nossas próprias implementações.
 ## Projeto de Experimento Inicial
 [Projeto de Experimento](https://docs.google.com/document/d/1McAgqlTyzA-5fwfJNOPwc6OmLkhDPfAJob9Lm05y2U4/edit?tab=t.0) 
