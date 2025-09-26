@@ -1,10 +1,15 @@
-## eda-hashmap-analysis
+# eda-hashmap-analysis
 
 Esse repositório contém a experimentação feita sobre a comparação de diferentes implementações de HashMap, com intuito de analisar diversas métricas sobre a eficiência de cada um. Os HashMap analisados são:
 * Endereçamento Aberto com Sondagem Linear
 * Endereçamento Aberto com Sondagem Quadrática
 * Encadeamento Fechado com LinkedList
 * Encadeamento Fechado com ArrayList
+
+## Introdução
+
+Os HashMaps têm seu uso consolidado na prática computacional por se configurarem como ferramentas para a organização e manutenção de dados primordiais de um sistema. A busca por uma estrutura de dados eficiente permite a construção de sistemas mais rápidos, facilita a manipulação de informações sem perdas e maximiza o aproveitamento dos recursos. Esse tema torna-se imprescindível à medida que o crescimento no volume de dados exige soluções cada vez mais eficazes. Neste estudo, implementamos diversos HashMaps sob diferentes fatores de carga e avaliamos a eficiência de seus métodos, com o objetivo de identificar qual HashMap apresenta melhor desempenho na inserção e na busca de uma quantidade randômica de itens.
+
 
 ## Como rodar o experimento?
 ```
