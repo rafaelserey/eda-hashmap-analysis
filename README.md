@@ -19,36 +19,29 @@ O objetivo deste projeto é analisar e comparar diferentes implementações de H
 ./run-benchmark.sh
 ```
 
-## Metodologia
+## Metodologia: 
 
-Esse experimento será conduzido em cinco etapas principais, correspondentes ao ciclo completo de preparação, execução e análise. O objetivo é avaliar a performance de diferentes estratégias de resolução de colisões em operações de inserção e busca em HashMap. Para isso, serão utilizadas quatro implementações distintas: endereçamento aberto com sondagem linear, endereçamento aberto com sondagem quadrática, encadeamento fechado com LinkedList e encadeamento fechado com ArrayList. Cada etapa foi definida de forma a garantir comparabilidade entre as implementações, possibilitando identificar em quais cenários cada estrutura apresenta maior eficiência.
+Nesse contexto, a execução do experimento se baseou no cumprimento de 3 etapas:
 
-### Configuração de etapa do plano de experimento:
+### 1. Implementação das estruturas que serão comparadas
+### 2. Geração das cargas de teste (entradas)
+### 3. Análise de desempenho da aplicação da carga às estruturas implementadas
 
-- Configuração das estruturas
+1. Implementação das estruturas:
 
-	Inicialmente, serão obtidos HashMaps do repositório Open Source thealgorithms, que serão devidamente alterados, para garantir que cada versão do HashMap esteja disponível para análise e possível modificação.
+Para assegurar a corretude das implementações, foram utilizadas as estruturas de Hashmap Encadeado com LinkedList e Hashmap com endereçamento aberto e probing linear, disponíveis no repositório público The Algoritms, que é testado e validado por milhares de usuários. A partir dessas estruturas, implementamos as outras variações (Hashmap Encadeado com Arraylist e o Hashmap com endereçamento aberto e probing linear)
 
+2. Geração das cargas de teste (entradas)
 
-- Ambientação e configuração
+As cargas de teste correspondem às chaves que serão adicionadas aos hashmaps e foram geradas por meio de um script em python, na ordem de 10⁶ elementos, cada valor variando entre 1 e 10⁸. Dessa forma, o fator aleatoriedade aliado a grande quantidade de elementos torna a distribuição bem espalhada ao longo do intervalo escolhido, implicando no bom espalhamento dos elementos ao longo do Hashmap. Dessa forma, nosso experimento se baseia em como as estruturas de dados vão se comportar num contexto de colisões minimizadas.
 
-	Após a recuperação, será realizada a adaptação das implementações para permitir a variação controlada do fator de carga em cada estrutura, assegurando comparabilidade entre os diferentes métodos de tratamento de colisões.
+3. Análise de desempenho das estruturas.
 
+O estudo acerca do desempenho de cada estrutura foi feito por meio da ferramenta de Benchmark JMH (Java Microbenchmark Harness), para garantir assertividade em relação aos resultados. Isso é possível porque o JMH inicia vários ciclos onde realizará massivamente as operações que estamos testando, para no fim tirar uma média dos resultados obtidos. 
 
-- Geração das entradas
+Além disso, há o uso de outras estratégias para evitar interferências externas ao código, como a execução de séries de aquecimento, que visam minimizar o impacto da lentidão das execuções iniciais, e o uso de forks, que isola a execução do Benchmark, evitando interferências de otimizações anteriores.
 
-	As entradas utilizadas nos experimentos serão geradas de maneira randômica, assegurando diversidade de casos de colisão. Essa abordagem garante que cada implementação seja testada sob condições variadas, simulando cenários próximos a aplicações reais.
-
-
-- Execução dos testes com benchmarks
-	
-	Para a execução dos testes será utilizado um ambiente controlado, no qual serão aplicados benchmarks em Java, utilizando o JMH (Java Microbenchmark Harness), uma ferramenta de análise de desempenho projetada para medir e analisar o desempenho de código Java. Os testes permitirão a coleta de métricas relacionadas ao custo de memória e à eficiência das operações put e get. Cada cenário será repetido múltiplas vezes para reduzir a influência de outliers.
-
-
-- Coleta e análise dos resultados
-
-	Após a execução, os dados serão processados para permitir a comparação entre os cenários. Os dados obtidos durante a execução dos benchmarks serão registrados em arquivos de resultados. Em seguida, serão gerados gráficos comparativos que representarão o desempenho de cada variação de HashMap em relação às métricas coletadas. Por fim, os resultados serão analisados de forma crítica, buscando identificar padrões de comportamento e compreender em quais cenários cada técnica apresenta maior eficiência.
-
+Nos parâmetros utilizados nesse experimento,  foram 5 forks onde são realizadas 10 ciclos de medição por fork, totalizando 50 ciclos de execução de 5 segundos cada.
 ## Resultados do Estudo de Desempenho (Benchmarks)
 
 O objetivo desta análise é comparar a eficiência de quatro estruturas de dados em operações chave: recuperação de dados (getAll) e inserção de dados (putAll), sob diversas configurações de loadFactor. Os resultados são medidos em tempo de execução (ns/op).
