@@ -115,16 +115,16 @@ Esses resultados sugerem que, em ambientes com maior pressão de carga, o endere
 ![Gráfico de Garbage Collector](/images/grafico2.jpg)
 
 ## Ameaças à validade
-* O experimento foi conduzido com até 10⁶ elementos. Em contextos de *big data* ou tabelas realmente massivas, efeitos de cache, paginação de memória e estratégias de GC podem se tornar mais relevantes e alterar os resultados.
-* *Benchmarks* dependem fortemente de *hardware*, SO, JVM e configurações da máquina virtual. Mesmo com JMH, resultados podem variar se replicados em arquiteturas diferentes.
-* Embora os dados aleatórios tenham uma boa distribuição, eles podem não refletir cenários práticos em que as chaves possuem padrões (ex.: dados sequenciais, *strings*). Isso pode limitar a validade externa do estudo.
-* Uma ameaça relevante à validade deste estudo está no comportamento observado entre os métodos de endereçamento aberto com sondagem linear e quadrática. Segundo a teoria, esperava-se que o método linear apresentasse pior desempenho à medida que o fator de carga aumentasse, enquanto o quadrático deveria amenizar os efeitos de colisões. No entanto, os resultados iniciais mostraram desempenhos muito próximos entre os dois métodos, com pouca influência do fator de carga.
+1. O experimento foi conduzido com até 10⁶ elementos. Em contextos de *big data* ou tabelas realmente massivas, efeitos de cache, paginação de memória e estratégias de GC podem se tornar mais relevantes e alterar os resultados.
+2. *Benchmarks* dependem fortemente de *hardware*, SO, JVM e configurações da máquina virtual. Mesmo com JMH, resultados podem variar se replicados em arquiteturas diferentes.
+3. Embora os dados aleatórios tenham uma boa distribuição, eles podem não refletir cenários práticos em que as chaves possuem padrões (ex.: dados sequenciais, *strings*). Isso pode limitar a validade externa do estudo.
+4. Uma ameaça relevante à validade deste estudo está no comportamento observado entre os métodos de endereçamento aberto com sondagem linear e quadrática. Segundo a teoria, esperava-se que o método linear apresentasse pior desempenho à medida que o fator de carga aumentasse, enquanto o quadrático deveria amenizar os efeitos de colisões. No entanto, os resultados iniciais mostraram desempenhos muito próximos entre os dois métodos, com pouca influência do fator de carga.
 
-### Experimento de Validação
+### Experimento de Validação (ameaça 4)
 
-Para investigar essa discrepância, conduzimos um mini-experimento adicional. Neste experimento, alteramos a função de hash para *hashCode* % 5, criando um cenário com alta taxa de colisões. O objetivo foi observar como cada método se comporta sob condições de estresse, forçando situações em que a sondagem quadrática deveria se destacar. As variáveis do experimento foram levemente modificadas em relação ao experimento original. Para evitar clustering em demasiado, foram alteradas 
+Para investigar a discrepância da ameaça 4, conduzimos um mini-experimento adicional. Neste experimento, alteramos a função de hash para *hashCode* % 5, criando um cenário com alta taxa de colisões. O objetivo foi observar como cada método se comporta sob condições de estresse, forçando situações em que a sondagem quadrática deveria se destacar. As variáveis do experimento foram levemente modificadas em relação ao experimento original. Para evitar clustering em demasiado, foram alteradas 
 * A entrada analisada agora contém 40.000 valores aleatórios que podem ser repetidos;
-* Os parâmetros do benchmark foram todos alterados para 1, afim de acelerar o processo;
+* Os parâmetros do benchmark foram todos alterados para 1, a fim de acelerar o processo;
 
 
 ### Resultados da experimentação
