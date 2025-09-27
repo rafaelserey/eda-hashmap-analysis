@@ -67,7 +67,7 @@ O loadFactor variou entre 0.5, 0.75, 0.9 e 1.5, dependendo do teste.
     1. Desempenho de Recuperação 
     	> Esta seção avalia a rapidez com que a estrutura recupera todos os dados armazenados.
 
-		|Estrutura|loadFactor|Score (ns/op)|                                                           *HashMaps*
+		|Estrutura|loadFactor|Score (ns/op)|
 		|-----|------|-------|
 		|LinearProbingHashMap|0.5|49.423.310,89|
 		|LinearProbingHashMap|0.75|49.863.936,24|
