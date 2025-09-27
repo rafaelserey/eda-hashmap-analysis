@@ -23,9 +23,9 @@ O objetivo deste projeto é analisar e comparar diferentes implementações de H
 
 Nesse contexto, a execução do experimento se baseou no cumprimento de 3 etapas:
 
-### 1. Implementação das estruturas que serão comparadas
-### 2. Geração das cargas de teste (entradas)
-### 3. Análise de desempenho da aplicação da carga às estruturas implementadas
+#### 1. Implementação das estruturas que serão comparadas
+#### 2. Geração das cargas de teste (entradas)
+#### 3. Análise de desempenho da aplicação da carga às estruturas implementadas
 
 1. Implementação das estruturas:
 
